@@ -12,6 +12,22 @@
 */
 
 # /app/routes.php
+Route::get('/practice-creating', function() {
+
+    # Instantiate a new Frost model class
+    $frost = new Frost();
+
+    # Set 
+    $frost->last_Frost_Date = 'May 15, 2015';
+    $frost->postal_Code = '03087';
+
+    # This is where the Eloquent ORM magic happens
+    $frost->save();
+
+    return 'A new frost date has been added! Check your database to see...';
+
+});
+
 Route::get('/debug', function() {
 
     echo '<pre>';
