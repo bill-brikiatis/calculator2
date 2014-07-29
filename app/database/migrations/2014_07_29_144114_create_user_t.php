@@ -3,19 +3,19 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration {
+class CreateUserT extends Migration {
 
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
-	public function up() {
-
-    Schema::create('users', function($table) {
+	public function up()
+	{
+		Schema::create('users', function($table) {
 
         // Increments method will make a Primary, Auto-Incrementing field.
-        $table->increments('gardner_id');
+        $table->increments('gardener_id');
 
         // This generates two columns: `created_at` and `updated_at` to
         // keep track of changes to a row
@@ -24,23 +24,24 @@ class CreateUsersTable extends Migration {
         // The rest of the fields...
         $table->string('postal_Code');
         $table->string('gardener_Email');
-        $table->string('gardner_Password');
-        $table->string('gardner_Role');
-		$table->integer('frost_Id')->unsigned();
+        $table->string('gardener_Password');
+        $table->string('gardener_Role');
+		$table->Integer('frost_id')->unsigned();
+		
 		
 		// Define foreign keys
-		$table->foreign('frost_Id')->references('frost_Id')->on('frost');
+		$table->foreign('frost_id')->references('frost_id')->on('frosts');
 
-    });
-}
+    	});
+	}
 
 	/**
 	 * Reverse the migrations.
 	 *
 	 * @return void
 	 */
-	public function down() {
-		
+	public function down()
+	{
 		Schema::drop('users');
 	}
 

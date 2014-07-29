@@ -3,19 +3,19 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFrostTable extends Migration {
+class CreateFrostT extends Migration {
 
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
-	public function up() {
-		
-		Schema::create('frost', function($table) {
+	public function up()
+	{
+		Schema::create('frosts', function($table) {
 			
 		// Increments method will make a Primary, Auto-Incrementing field.
-        $table->increments('frost_id')->unsigned();
+        $table->increments('frost_id');
 
         // This generates two columns: `created_at` and `updated_at` to
         // keep track of changes to a row
@@ -26,17 +26,16 @@ class CreateFrostTable extends Migration {
         $table->string('last_Frost_Date');
 		
 		});
-		
-}
+	}
 
 	/**
 	 * Reverse the migrations.
 	 *
 	 * @return void
 	 */
-	public function down() {
-		
-		Schema::drop('frost');
+	public function down()
+	{
+		Schema::drop('frosts');
 	}
 
 }
