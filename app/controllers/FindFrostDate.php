@@ -1,4 +1,4 @@
-<?php
+<?phpe
 
 class FindFrostDate extends BaseController {
 
@@ -7,8 +7,8 @@ class FindFrostDate extends BaseController {
 	 * 
 	 */
 	 public function zipConverter($zip_code) {
-	 	public $zip_code;
-		public $last_frost_date;
+	 	$zip_code = Input::;
+		$last_frost_date;
 		
 		
 		

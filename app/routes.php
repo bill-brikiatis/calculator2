@@ -18,13 +18,53 @@ Route::get('/practice-creating', function() {
     $frost = new Frost();
 
     # Set 
-    $frost->last_Frost_Date = 'May 15, 2015';
+    $frost->last_Frost_Date = 'June 15, 2015';
     $frost->postal_Code = '03087';
 
     # This is where the Eloquent ORM magic happens
     $frost->save();
+	
+	return "A row has been added.";
 
-    return 'A new frost date has been added! Check your database to see...';
+});
+
+Route::get('/index', function() {
+	
+	 $frosts = Frost::where('postal_Code', '=', '03087')->first();
+	 $your_last_frost_date = "This is your last frost date $frosts->last_Frost_Date .";
+   		
+   	 return View::make('index')
+		->with('your_last_frost_date', $your_last_frost_date);
+	
+});
+
+Route::get('/practice-updating', function() {
+
+    # First get a frost date to update
+    $frosts = Frost::where('postal_Code', '=', '03087')->get();
+	
+
+    # Make the change in the row
+    $frosts->last_Frost_Date = 'June 1, 2014';
+	$frosts->postal_Code = '03084';
+
+    # Save the changes
+    $frosts->save();
+
+    //return  $your_last_frost_date = "This is your last frost date $frosts->last_Frost_Date .";
+    return "Check your table.";
+
+});
+
+Route::get('/practice-deleting', function() {
+
+    # First get a book to delete
+     $frosts = Frost::where('postal_Code', '=', '03087')->first();
+
+    # Goodbye!
+    $frosts->delete();
+
+    return "Deletion complete; check the database to see if it worked...";
 
 });
 
@@ -74,15 +114,13 @@ Route::get('/debug', function() {
 });
 
 
-
-
-Route::get('mysql-test', function() {
+Route::get('/mysql-test', function() {
 
     # Use the DB component to select all the databases
     $results = DB::select('SHOW DATABASES;');
 
     # If the "Pre" package is not installed, you should output using print_r instead
-    return Pre::render($results);
+    return Paste\Pre::render($results);
 
 });
 

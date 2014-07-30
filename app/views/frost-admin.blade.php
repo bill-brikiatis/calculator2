@@ -16,7 +16,7 @@
 {{ Form::open(array('url' => 'FindFrostDate.php'))}}
 	{{ Form::text('zip_code') }}
 	{{ Form::text('last_frost_date') }}
-	{{ Form::submit('Calculate') }}
+	{{ Form::submit('Enter') }}
 {{ Form::close() }}
 
 <p style="color:red">{{ $your_last_frost_date }}</p>
