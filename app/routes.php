@@ -41,7 +41,7 @@ Route::get('/index', function() {
 Route::get('/practice-updating', function() {
 
     # First get a frost date to update
-    $frosts = Frost::where('postal_Code', '=', '03087')->get();
+    $frosts = Frost::where('postal_Code', '=', '03087')->first();
 	
 
     # Make the change in the row
@@ -147,7 +147,10 @@ Route::get('/planting-date-calculator2', 'PlantsController@planting-date-calcula
 Route::get('/planting-date-calculator3', 'PlantsController@planting-date-calculator3');
 
 // Show Admin Interface Form
-Route::get('/admin', 'admin');
+Route::get('/frost-admin', function() {
+	
+	return View::make('/frost-admin');
+});
 
 //HANDLE SUBMISSION FORMS
 
@@ -168,3 +171,6 @@ Route::post('/dates', 'PlantsController@dates');
 
 // Process Zip Codes
 Route::post('/zip', 'PlantsController@zip');
+
+// Process enter postal codes
+Route::post('/admin-frost', 'PlantsController@postEnterFrost');

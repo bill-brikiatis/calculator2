@@ -13,12 +13,15 @@
 <p>If you live in the Northern half of the United States, start by entering your zip code to 
 	calculate your last frost date. If you know your last frost date, enter it directly.</p>
 	
-{{ Form::open(array('url' => 'FindFrostDate.php'))}}
-	{{ Form::text('zip_code') }}
-	{{ Form::text('last_frost_date') }}
-	{{ Form::submit('Calculate') }}
+<h2>Enter Your Password to Get Started or Create a Password</h2>
+
+{{ Form::open(array('action' => 'PlantsController@postEnterFrost')) }}
+	{{ Form::label('email', 'Enter Your Email'); }}
+	{{ Form::text('email') }}
+	{{ Form::label('Password', 'Enter Password'); }}
+	{{ Form::text('Password') }}
+	{{ Form::submit('Submit') }}
 {{ Form::close() }}
 
-<p style="color:red">{{ $your_last_frost_date }}</p>
 
 @stop

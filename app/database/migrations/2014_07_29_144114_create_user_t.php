@@ -15,7 +15,7 @@ class CreateUserT extends Migration {
 		Schema::create('users', function($table) {
 
         // Increments method will make a Primary, Auto-Incrementing field.
-        $table->increments('gardener_id');
+        $table->increments('id');
 
         // This generates two columns: `created_at` and `updated_at` to
         // keep track of changes to a row
@@ -26,11 +26,11 @@ class CreateUserT extends Migration {
         $table->string('gardener_Email');
         $table->string('gardener_Password');
         $table->string('gardener_Role');
-		$table->Integer('frost_id')->unsigned();
+		$table->integer('frost_id')->unsigned();
 		
 		
 		// Define foreign keys
-		$table->foreign('frost_id')->references('frost_id')->on('frosts');
+		$table->foreign('frost_id')->references('id')->on('frosts');
 
     	});
 	}

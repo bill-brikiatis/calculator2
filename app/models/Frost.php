@@ -7,14 +7,18 @@ class Frost extends Eloquent {
 	 *
 	 * @var string
 	 */
-	public $table = 'frosts';
+	//public $table = 'frosts';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	public $last_frost_date;
-	public $postal_code;
+	//public $last_frost_date;
+	//public $postal_code;
+	
+	public function gardeners() {
+		return $this->hasMany('Gardener');
+	}
 
 }

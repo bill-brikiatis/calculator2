@@ -19,19 +19,19 @@ class CreateGardenerPlantT extends Migration {
         $table->timestamps();
 
         // The rest of the fields...
-        $table->Integer('frost_id')->unsigned();
-		$table->foreign('frost_id')->references('frost_id')->on('frosts');
-        $table->Integer('gardener_id')->unsigned();
-		$table->foreign('gardener_id')->references('gardener_id')->on('users');
-		$table->Integer('plant_id')->unsigned();
-		$table->foreign('plant_id')->references('plant_id')->on('plants');
+        //$table->integer('frost_id')->unsigned();
+		//$table->foreign('frost_id')->references('id')->on('frosts');
+        $table->integer('gardener_id')->unsigned();
+		$table->foreign('gardener_id')->references('id')->on('users');
+		$table->integer('plant_id')->unsigned();
+		$table->foreign('plant_id')->references('id')->on('plants');
 		
-		$table->date('seedling_Date');
-		$table->date('direct_Sow_Date');
-		$table->date('transplanting_Date');
-		$table->string('gardener_Indoor_Offset_Days');
-		$table->string('gardener_Outdoor_Offset_Days');
-		$table->string('gardener_Transplant_Offset_Days');
+		//$table->date('seedling_Date');
+		//$table->date('direct_Sow_Date');
+		//$table->date('transplanting_Date');
+		//$table->string('gardener_Indoor_Offset_Days');
+		//$table->string('gardener_Outdoor_Offset_Days');
+		//$table->string('gardener_Transplant_Offset_Days');
 
 		});
 	}

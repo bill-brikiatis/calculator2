@@ -15,7 +15,7 @@ class CreateFrostT extends Migration {
 		Schema::create('frosts', function($table) {
 			
 		// Increments method will make a Primary, Auto-Incrementing field.
-        $table->increments('frost_id');
+        $table->increments('id');
 
         // This generates two columns: `created_at` and `updated_at` to
         // keep track of changes to a row
