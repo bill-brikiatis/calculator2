@@ -29,7 +29,7 @@ class PlantsController  extends BaseController {
 
 	}
 
-    # This is an action...
+    # Prosse
     public function getSignup() {
 
 
