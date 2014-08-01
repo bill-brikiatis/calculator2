@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MakePostalUnique extends Migration {
+class UpdateUserTableForPassword extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,9 @@ class MakePostalUnique extends Migration {
 	 */
 	public function up()
 	{
-		 Schema::table('frosts', function($table) {
-		 	$table->unique('postal_Code');
-		 });
+		Schema::table('gardeners', function($table) {
+			$table->boolean('remember_token');
+		});
 	}
 
 	/**
@@ -24,10 +24,12 @@ class MakePostalUnique extends Migration {
 	 */
 	public function down()
 	{
-		  Schema::table('frosts', function($table) {
-		  	$table->dropColumn('postal_Code');
-			$table->string('postal_Code');
-		  });
+		Schema::table('gardeners', function($table) {
+			
+			$table->dropColumn('remember_token');
+			
+		});
+			
 	}
-	
+
 }

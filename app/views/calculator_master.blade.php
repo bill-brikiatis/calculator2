@@ -10,6 +10,9 @@
 
 </head>
 <body>
+@if(Session::get('flash_message'))
+    <div class='flash-message'>{{ Session::get('flash_message') }}</div>
+@endif
 
 <h1>Planting Date Calculator</h1>
 @yield('last_frost')

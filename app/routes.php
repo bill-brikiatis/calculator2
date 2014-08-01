@@ -132,10 +132,43 @@ Route::get('/mysql-test', function() {
 // SHOW PAGES
 
 // Show Sign In Form
-Route::get('/', 'PlantsController@index');
+Route::get('/',
+    array(
+        'before' => 'guest',
+        function() {
+            return View::make('index');
+        }
+    )
+);
 
 // Show Create Password Form
-Route::get('/pw', 'PlantsController@pw');
+Route::post('/', 
+    array(
+        'before' => 'csrf', 
+        function() {
+
+            $user = new User;
+            $user->email    = Input::get('email');
+            $user->password = Hash::make(Input::get('password'));
+            $user->email    = Input::get('email');
+
+            # Try to add the user 
+            try {
+                $user->save();
+            }
+            # Fail
+            catch (Exception $e) {
+                return Redirect::to('/')->with('flash_message', 'Sign up failed; please try again.')->withInput();
+            }
+
+            # Log the user in
+            Auth::login($user);
+
+            return Redirect::to('/find-frost')->with('flash_message', 'You are signed in');
+
+        }
+    )
+);
 
 // Show Last Frost Date Form
 Route::get('/planting-date-calculator1', 'PlantsController@planting-date-calculator1');
@@ -169,7 +202,7 @@ Route::post('/plants', 'PlantsController@plants');
 // Calculate Dates
 Route::post('/dates', 'PlantsController@dates');
 
-// Process Zip Codes
+// Process postal codes
 Route::post('/zip', 'PlantsController@zip');
 
 // Process enter postal codes

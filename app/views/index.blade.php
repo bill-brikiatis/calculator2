@@ -15,13 +15,15 @@
 	
 <h2>Enter Your Password to Get Started or Create a Password</h2>
 
-{{ Form::open(array('action' => 'PlantsController@postEnterFrost')) }}
+{{ Form::open(array('url' => 'index')) }}
 	{{ Form::label('email', 'Enter Your Email'); }}
-	{{ Form::text('email') }}
+	{{ Form::text('email') }}<br><br />
 	{{ Form::label('Password', 'Enter Password'); }}
-	{{ Form::text('Password') }}
+	{{ Form::text('Password') }}<br><br />
 	{{ Form::submit('Submit') }}
 {{ Form::close() }}
+
+<a href="create-passsword">New Users Register Here</a>
 
 
 @stop
