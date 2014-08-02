@@ -132,11 +132,11 @@ Route::get('/mysql-test', function() {
 // SHOW PAGES
 
 // Show Sign In Form
-Route::get('/',
+Route::get('/create-password',
     array(
         'before' => 'guest',
         function() {
-            return View::make('index');
+            return View::make('create-password');
         }
     )
 );
@@ -191,7 +191,8 @@ Route::get('/frost-admin', function() {
 Route::post('/process-pw', 'PlantsController@process-password');
 
 // Create Password
-Route::post('/create-pw', 'PlantsController@create-password');
+//Route::post('/create-password', 'PlantsController@create-password');
+//	return View::make('frost');
 
 // Find Last Frost Date
 Route::post('/frost', 'PlantsController@frost');
