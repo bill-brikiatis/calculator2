@@ -19,6 +19,4 @@
 	{{ Form::submit('Calculate') }}
 {{ Form::close() }}
 
-<p style="color:red">{{ $your_last_frost_date }}</p>
-
 @stop

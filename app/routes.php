@@ -11,6 +11,12 @@
 |
 */
 
+
+Route::get('/test5', function() {
+	
+	new PDO('mysql:host=localhost;port=3307;dbname=plants', 'root', 'root');
+	});
+
 # /app/routes.php
 Route::get('/practice-creating', function() {
 
@@ -28,7 +34,7 @@ Route::get('/practice-creating', function() {
 
 });
 
-Route::get('/index', function() {
+Route::get('/frost', function() {
 	
 	 $frosts = Frost::where('postal_Code', '=', '03087')->first();
 	 $your_last_frost_date = "This is your last frost date $frosts->last_Frost_Date .";
@@ -141,8 +147,8 @@ Route::get('/create-password',
     )
 );
 
-// Show Create Password Form
-Route::post('/', 
+// Process password route
+Route::post('/create-password', 
     array(
         'before' => 'csrf', 
         function() {
@@ -150,7 +156,7 @@ Route::post('/',
             $user = new User;
             $user->email    = Input::get('email');
             $user->password = Hash::make(Input::get('password'));
-            $user->email    = Input::get('email');
+			$user->email    = Input::get('email');
 
             # Try to add the user 
             try {
@@ -158,13 +164,13 @@ Route::post('/',
             }
             # Fail
             catch (Exception $e) {
-                return Redirect::to('/')->with('flash_message', 'Sign up failed; please try again.')->withInput();
+                return Redirect::to('/create-password')->with('flash_message', 'Sign up failed; please try again.')->withInput();
             }
 
             # Log the user in
             Auth::login($user);
 
-            return Redirect::to('/find-frost')->with('flash_message', 'You are signed in');
+            return Redirect::to('/test')->with('flash_message', 'Welcome to Foobooks!');
 
         }
     )
@@ -188,7 +194,24 @@ Route::get('/frost-admin', function() {
 //HANDLE SUBMISSION FORMS
 
 // Process Password
-Route::post('/process-pw', 'PlantsController@process-password');
+Route::post('/', 
+    array(
+        'before' => 'csrf', 
+        function() {
+
+            $credentials = Input::only('email', 'password');
+
+            if (Auth::attempt($credentials, $remember = true)) {
+                return Redirect::intended('/')->with('flash_message', 'Welcome Back!');
+            }
+            else {
+                return Redirect::to('/login')->with('flash_message', 'Log in failed; please try again.');
+            }
+
+            return Redirect::to('index');
+        }
+    )
+);
 
 // Create Password
 //Route::post('/create-password', 'PlantsController@create-password');
