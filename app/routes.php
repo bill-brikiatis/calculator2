@@ -12,9 +12,10 @@
 */
 
 
-Route::get('/test5', function() {
+Route::get('/test2', function() {
 	
-	new PDO('mysql:host=localhost;port=3307;dbname=plants', 'root', 'root');
+	return View::make('test2'); 
+	
 	});
 
 # /app/routes.php
@@ -135,7 +136,7 @@ Route::get('/mysql-test', function() {
 
 
 
-// SHOW PAGES
+// AUTHENTICATION PROCESS
 
 // Show Sign In Form
 Route::get('/create-password',
@@ -153,10 +154,9 @@ Route::post('/create-password',
         'before' => 'csrf', 
         function() {
 
-            $user = new User;
+            $user = new Gardener;
             $user->email    = Input::get('email');
             $user->password = Hash::make(Input::get('password'));
-			$user->email    = Input::get('email');
 
             # Try to add the user 
             try {
@@ -170,11 +170,12 @@ Route::post('/create-password',
             # Log the user in
             Auth::login($user);
 
-            return Redirect::to('/test')->with('flash_message', 'Welcome to Foobooks!');
+            return Redirect::to('/test2')->with('flash_message', 'You are signed in!');
 
         }
     )
 );
+
 
 // Show Last Frost Date Form
 Route::get('/planting-date-calculator1', 'PlantsController@planting-date-calculator1');
