@@ -11,13 +11,6 @@
 |
 */
 
-
-Route::get('/test2', function() {
-	
-	return View::make('test2'); 
-	
-	});
-
 # /app/routes.php
 Route::get('/practice-creating', function() {
 
@@ -176,6 +169,23 @@ Route::post('/create-password',
     )
 );
 
+Route::get('/test2', function() {
+	
+	return View::make('test2'); 
+	
+	});
+
+// Logout
+Route::get('/logout', function() {
+
+    # Log out
+    Auth::logout();
+
+    # Send them to the test2
+    return Redirect::to('/test2');
+
+});
+
 
 // Show Last Frost Date Form
 Route::get('/planting-date-calculator1', 'PlantsController@planting-date-calculator1');
@@ -192,31 +202,7 @@ Route::get('/frost-admin', function() {
 	return View::make('/frost-admin');
 });
 
-//HANDLE SUBMISSION FORMS
 
-// Process Password
-Route::post('/', 
-    array(
-        'before' => 'csrf', 
-        function() {
-
-            $credentials = Input::only('email', 'password');
-
-            if (Auth::attempt($credentials, $remember = true)) {
-                return Redirect::intended('/')->with('flash_message', 'Welcome Back!');
-            }
-            else {
-                return Redirect::to('/login')->with('flash_message', 'Log in failed; please try again.');
-            }
-
-            return Redirect::to('index');
-        }
-    )
-);
-
-// Create Password
-//Route::post('/create-password', 'PlantsController@create-password');
-//	return View::make('frost');
 
 // Find Last Frost Date
 Route::post('/frost', 'PlantsController@frost');
