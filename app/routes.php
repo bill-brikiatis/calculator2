@@ -11,29 +11,14 @@
 |
 */
 
-# /app/routes.php
-Route::get('/practice-creating', function() {
-
-    # Instantiate a new Frost model class
-    $frost = new Frost();
-
-    # Set 
-    $frost->last_Frost_Date = 'June 15, 2015';
-    $frost->postal_Code = '03087';
-
-    # This is where the Eloquent ORM magic happens
-    $frost->save();
-	
-	return "A row has been added.";
-
-});
-
 Route::get('/frost', function() {
+	
+	
 	
 	 $frosts = Frost::where('postal_Code', '=', '03087')->first();
 	 $your_last_frost_date = "This is your last frost date $frosts->last_Frost_Date .";
    		
-   	 return View::make('index')
+   	 return View::make('select-plants')
 		->with('your_last_frost_date', $your_last_frost_date);
 	
 });
@@ -150,6 +135,7 @@ Route::post('/create-password',
             $user = new Gardener;
             $user->email    = Input::get('email');
             $user->password = Hash::make(Input::get('password'));
+            $user->gardener_Role = Input::get('gardener_Role');
 
             # Try to add the user 
             try {
@@ -163,17 +149,11 @@ Route::post('/create-password',
             # Log the user in
             Auth::login($user);
 
-            return Redirect::to('/test2')->with('flash_message', 'You are signed in!');
+            return Redirect::to('/frost')->with('flash_message', 'You are signed in!');
 
         }
     )
 );
-
-Route::get('/test2', function() {
-	
-	return View::make('test2'); 
-	
-	});
 
 // Logout
 Route::get('/logout', function() {
@@ -181,9 +161,57 @@ Route::get('/logout', function() {
     # Log out
     Auth::logout();
 
-    # Send them to the test2
-    return Redirect::to('/test2');
+    # Send them to the home page
+    return Redirect::to('/');
 
+});
+
+Route::get('/login',
+    array(
+        'before' => 'guest',
+        function() {
+            return View::make('login');
+        }
+    )
+);
+
+Route::post('/login', 
+    array(
+        'before' => 'csrf', 
+        function() {
+
+            $credentials = Input::only('email', 'password');
+			$gardeners = Gardener::all();
+			foreach($gardeners as $gardener) {
+				if ($gardener->email == $credentials['email']) {
+					$role =  $gardener->gardener_Role;
+				}
+			}
+			
+
+			if ((Auth::attempt($credentials, $remember = true)) && ($role == 'Admin')) {
+				return Redirect::to('/frost-admin')->with('flash_message', 'You are the Admin');
+			}
+			
+			elseif (Auth::attempt($credentials, $remember = true)) {
+                return Redirect::intended('/frost')->with('flash_message', 'Welcome Back!');
+            }
+
+			else {
+                return Redirect::to('/login')->with('flash_message', 'Log in failed; please try again or <a href="create-passsword">new user register here</a>.');
+            }
+
+            return Redirect::to('/');
+        }
+    )
+);
+
+
+// Show home
+Route::get('/', function() {
+	
+	return View::make('/index');
+	
 });
 
 
@@ -204,8 +232,15 @@ Route::get('/frost-admin', function() {
 
 
 
+Route::get('/frost', function() {
+	
+	return View::make('frost');
+});
+
+
+
 // Find Last Frost Date
-Route::post('/frost', 'PlantsController@frost');
+Route::post('/frost', 'PlantsController@postFrost');
 
 // Create Plant List
 Route::post('/plants', 'PlantsController@plants');

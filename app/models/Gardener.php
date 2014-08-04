@@ -23,9 +23,9 @@ class Gardener extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 	
-	/*public function gardeners() {
+	public function gardeners() {
 		return $this->belongsToMany('Gardener', 'gardeners_plants');
-	}*/
+	}
 	
 	public function frosts() {
 		return $this->hasOne('Frost');

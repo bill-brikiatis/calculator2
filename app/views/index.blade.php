@@ -7,23 +7,12 @@
 	<ul>
 		<li>Start vegitable garden seedlings indoors</li>
 		<li>Transplant seedlings in the ground</li>
-		<li>direct sow seed in your garden</li>  
+		<li>Direct sow seed in your garden</li>  
 	</ul>
 </p>
 <p>If you live in the Northern half of the United States, start by entering your zip code to 
 	calculate your last frost date. If you know your last frost date, enter it directly.</p>
 	
-<h2>Enter Your Password to Get Started or Create a Password</h2>
-
-{{ Form::open(array('url' => 'index')) }}
-	{{ Form::label('email', 'Enter Your Email'); }}
-	{{ Form::text('email') }}<br><br />
-	{{ Form::label('Password', 'Enter Password'); }}
-	{{ Form::text('Password') }}<br><br />
-	{{ Form::submit('Submit') }}
-{{ Form::close() }}
-
-<a href="create-passsword">New Users Register Here</a>
-
+<h2><a href="/login">Click Here to Start</a></h2>
 
 @stop

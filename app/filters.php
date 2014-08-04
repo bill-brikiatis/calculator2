@@ -67,7 +67,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/test2');
+	if (Auth::check()) return Redirect::to('/frost')->with('flash_message', 'Welcome Back. Good to see you again!');
 });
 
 /*
