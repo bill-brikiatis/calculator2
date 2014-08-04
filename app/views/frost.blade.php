@@ -10,9 +10,10 @@
 	
 <h2>Calculate Your Last Frost Date</h2>
 	
-{{ Form::open(array('action' => 'PlantsController@postEnterFrost')) }}
-	{{ Form::label('zip_code', 'Enter Your Postal Code'); }}
-	{{ Form::text('zip_code') }}<br><br>
+{{ Form::open(array('method' => 'POST', 'action' => 'PlantsController@postFrost')) }}
+
+	{{ Form::label('postal_code', 'Enter Your Postal Code'); }}
+	{{ Form::text('postal_code') }}<br><br>
 	{{ Form::submit('Calculate') }}
 {{ Form::close() }}
 

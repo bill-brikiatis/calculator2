@@ -11,17 +11,17 @@
 |
 */
 
-Route::get('/frost', function() {
+/*Route::get('/frost', function() {
 	
 	
 	
 	 $frosts = Frost::where('postal_Code', '=', '03087')->first();
 	 $your_last_frost_date = "This is your last frost date $frosts->last_Frost_Date .";
    		
-   	 return View::make('select-plants')
+   	 return View::make('/frost')
 		->with('your_last_frost_date', $your_last_frost_date);
 	
-});
+});*/
 
 Route::get('/practice-updating', function() {
 
@@ -215,19 +215,10 @@ Route::get('/', function() {
 });
 
 
-// Show Last Frost Date Form
-Route::get('/planting-date-calculator1', 'PlantsController@planting-date-calculator1');
-
-// Show Last Frost Date & Plant Form Checkboxes
-Route::get('/planting-date-calculator2', 'PlantsController@planting-date-calculator2');
-
-// Show Planting Dates
-Route::get('/planting-date-calculator3', 'PlantsController@planting-date-calculator3');
-
 // Show Admin Interface Form
 Route::get('/frost-admin', function() {
 	
-	return View::make('/frost-admin');
+	return View::make('frost-admin');
 });
 
 
@@ -238,18 +229,14 @@ Route::get('/frost', function() {
 });
 
 
+// Show lost frost date & select plants
+Route::get('/select-plants', function() {
+	
+	return View::make('select-plants');
+});
 
-// Find Last Frost Date
 Route::post('/frost', 'PlantsController@postFrost');
 
-// Create Plant List
-Route::post('/plants', 'PlantsController@plants');
-
-// Calculate Dates
-Route::post('/dates', 'PlantsController@dates');
-
-// Process postal codes
-Route::post('/zip', 'PlantsController@zip');
 
 // Process enter postal codes
 Route::post('/admin-frost', 'PlantsController@postEnterFrost');

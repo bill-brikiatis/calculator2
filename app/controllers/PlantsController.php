@@ -29,34 +29,13 @@ class PlantsController  extends BaseController {
 
 	}
 
-    # Prosse
-    public function postfrost() {
+    # Prossess
+    public function postFrost() {
     	
-		$frost_table = Input::all();
-		$frosts = Frost::where('postal_Code', '=', '03087')->first();
-	 	$your_last_frost_date = "This is your last frost date $frosts->last_Frost_Date .";
-   		
-   	 return View::make('select-plants')
-		->with('your_last_frost_date', $your_last_frost_date);
-
-    }
-
-    # This is an action...
-    public function postSignup() {
-
-
-    }
-
-    # This is an action...
-    public function getLogin() {
-
-
-    }
-
-    # This is an action...
-    public function postLogin() {
-
-
-    }
-
+		$postal = Input::get('postal_code');
+			
+		$frosts = Frost::where('postal_Code', '=', $postal)->first();
+		$last_frost = $frosts->last_Frost_Date;
+		return View::make('select-plants')->with('last_frost', $last_frost);
+	}
 }
