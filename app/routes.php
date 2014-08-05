@@ -236,3 +236,11 @@ Route::post('/frost', 'PlantsController@postFrost');
 
 // Process enter postal codes
 Route::post('/admin-frost', 'PlantsController@postEnterFrost');
+
+
+Route::get('/trigger-error',function() {
+
+    # Class Foobar should not exist, so this should create an error
+    $foo = new Foobar;
+
+});
