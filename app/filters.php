@@ -101,10 +101,9 @@ Route::filter('csrf', function()
 |
 */
 
-/*Route::filter('admin', function()
+Route::filter('admin', function()
 {
-    $current_email = 'bill.brikiatis@comcast.net'; //Input::get('email');
-	$row = DB::table('gardeners')->where('email', '=', $current_email);
+   	$row = auth::check();
 	$role = $row->gardener_Role;
     if ($role == 'Admin') {
         return View::make('/frost-admin');
@@ -112,4 +111,4 @@ Route::filter('csrf', function()
 	else {
 		return View::make('/frost');
 	}
-});*/
+});
