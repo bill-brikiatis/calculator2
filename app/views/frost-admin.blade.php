@@ -25,7 +25,7 @@
 	{{ Form::label('gardener_Role', 'Enter Role'); }}
 	{{ Form::text('gardener_Role') }}<br><br />
 	{{ Form::submit('Submit') }}
-{{ Form::close() }}
+{{ Form::close() }}<br />
 
 @stop
 

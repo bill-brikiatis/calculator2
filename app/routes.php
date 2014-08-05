@@ -23,24 +23,6 @@
 	
 });*/
 
-Route::get('/practice-updating', function() {
-
-    # First get a frost date to update
-    $frosts = Frost::where('postal_Code', '=', '03087')->first();
-	
-
-    # Make the change in the row
-    $frosts->last_Frost_Date = 'June 1, 2014';
-	$frosts->postal_Code = '03084';
-
-    # Save the changes
-    $frosts->save();
-
-    //return  $your_last_frost_date = "This is your last frost date $frosts->last_Frost_Date .";
-    return "Check your table.";
-
-});
-
 Route::get('/practice-deleting', function() {
 
     # First get a book to delete
@@ -52,6 +34,8 @@ Route::get('/practice-deleting', function() {
     return "Deletion complete; check the database to see if it worked...";
 
 });
+
+// Susan's debug script
 
 Route::get('/debug', function() {
 
@@ -98,6 +82,7 @@ Route::get('/debug', function() {
 
 });
 
+// Susan's database test
 
 Route::get('/mysql-test', function() {
 
@@ -126,7 +111,8 @@ Route::get('/create-password',
     )
 );
 
-// Process password route
+// Process new passwords
+
 Route::post('/create-password', 
     array(
         'before' => 'csrf', 
@@ -198,7 +184,7 @@ Route::post('/login',
             }
 
 			else {
-                return Redirect::to('/login')->with('flash_message', 'Log in failed; please try again or <a href="create-passsword">new user register here</a>.');
+                return Redirect::to('/login')->with('flash_message', 'Log in failed; please try again or <a href="create-password">new user register here</a>.');
             }
 
             return Redirect::to('/');
@@ -220,6 +206,16 @@ Route::get('/frost-admin', function() {
 	
 	return View::make('frost-admin');
 });
+
+
+// Show Admin Interface Form & filter out non-admin
+/*Route::get('/frost-admin', array(
+	'before' => 'admin',
+	function() {
+	
+		return View::make('frost-admin');
+		}
+));*/
 
 
 

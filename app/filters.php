@@ -88,3 +88,28 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Frost-Admin Filter 
+|--------------------------------------------------------------------------
+|
+| This filter locks down the Frost Admin page so only people with the 
+| Admin Role can access it.
+|
+*/
+
+/*Route::filter('admin', function()
+{
+    $current_email = 'bill.brikiatis@comcast.net'; //Input::get('email');
+	$row = DB::table('gardeners')->where('email', '=', $current_email);
+	$role = $row->gardener_Role;
+    if ($role == 'Admin') {
+        return View::make('/frost-admin');
+    }
+	else {
+		return View::make('/frost');
+	}
+});*/

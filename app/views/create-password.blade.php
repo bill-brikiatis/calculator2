@@ -1,3 +1,7 @@
+@foreach($errors->all() as $message) 
+    <div class='error'>{{ $message }}</div>
+@endforeach
+
 @extends('calculator_master')
 
 @section('last_frost')
