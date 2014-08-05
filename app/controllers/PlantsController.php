@@ -29,13 +29,19 @@ class PlantsController  extends BaseController {
 
 	}
 
-    # Prossess
+    # Prossess Frost Date
     public function postFrost() {
     	
 		$postal = Input::get('postal_code');
 			
-		$frosts = Frost::where('postal_Code', '=', $postal)->first();
-		$last_frost = $frosts->last_Frost_Date;
-		return View::make('select-plants')->with('last_frost', $last_frost);
+		$frosts = Frost::where('postal_Code', '=', $postal)->firstOrFail();
+		if ($frosts->last_Frost_Date):
+			$last_frost = $frosts->last_Frost_Date;
+			return View::make('select-plants')->with('last_frost', $last_frost);
+		else:
+			$last_frost = NULL;
+			return View::make('select-plants')->with('last_frost', 'Not Available in the System');
+		endif;
+		
 	}
 }
