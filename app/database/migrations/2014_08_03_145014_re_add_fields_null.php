@@ -14,7 +14,11 @@ class ReAddFieldsNull extends Migration {
 	{
 		Schema::table('gardeners', function($table) {
 			
+			$table->dropColumn('remember_token');
+			$table->boolean('remember_token')->nullable();
+			$table->dropColumn('postal_Code');
 			$table->string('postal_Code')->nullable();
+			$table->dropColumn('gardener_Role');
 			$table->string('gardener_Role')->nullable();
 		});
 	}
@@ -26,7 +30,10 @@ class ReAddFieldsNull extends Migration {
 	 */
 	public function down()
 	{
+			$table->dropColumn('remember_token');
+			$table->boolean('remember_token');
 			$table->dropColumn('postal_Code');
+			$table->string('postal_Code')->nullable();
 			$table->dropColumn('gardener_Role');
 	}
 
