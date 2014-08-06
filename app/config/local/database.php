@@ -29,7 +29,7 @@ return array(
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
-			//'port' => '3307'
+			'port' => '3307'
 		),
 
 		'pgsql' => array(
