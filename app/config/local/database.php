@@ -23,13 +23,13 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'plants',
+			'database'  => 'plants2',
 			'username'  => 'root',
 			'password'  => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
-			'port' => '3307'
+			//'port' => '3307'
 		),
 
 		'pgsql' => array(
