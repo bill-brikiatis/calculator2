@@ -125,8 +125,10 @@ Route::post('/create-password',
             $user = new Gardener;
             $user->email    = Input::get('email');
             $user->password = Hash::make(Input::get('password'));
+			
             $user->gardener_Role = Input::get('gardener_Role');
-
+var_dump(Hash::make(Input::get('password')));
+die();
             # Try to add the user 
             try {
                 $user->save();
