@@ -122,13 +122,9 @@ Route::post('/create-password',
         'before' => 'csrf', 
         function() {
 
-            var_dump(Hash::make(Input::get('password')));
-			die();
-
 			$user = new Gardener;
             $user->email    = Input::get('email');
             $user->password = Hash::make(Input::get('password'));
-			
             $user->gardener_Role = Input::get('gardener_Role');
 
             # Try to add the user 
