@@ -1,17 +1,20 @@
 <?php
 
-class UserTableSeeder extends Seeder
+class GardenerTableSeeder extends Seeder
 {
 
 	public function run()
 	{
-		DB::table('users')->delete();
-		User::create(array(
-			'postal_Code'     => '03087',
-			'gardener_Email' => 'bill.brikiatis@comcast.net',
-			'gardener_Password' => Hash::make('Maine'),
-			'frost_id' => 14
+		DB::table('gardeners')->delete();
+		$gardener = new Gardener;
+		
+		$gardener->fill(array(
+				'email' => 'bill.brikiatis@comcast.net',
+				'password' => Hash::make('Maine'),
+				'gardener_Role' => 'Admin'
 		));
+		
+		$gardener->save();
 	}
 
 }

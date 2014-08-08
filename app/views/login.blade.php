@@ -8,7 +8,7 @@
 	{{ Form::label('email', 'Enter Your Email'); }}
 	{{ Form::text('email') }}<br><br />
 	{{ Form::label('Password', 'Enter Password'); }}
-	{{ Form::text('Password') }}<br><br />
+	{{ Form::password('password') }}<br><br />
 	{{ Form::submit('Submit') }}
 {{ Form::close() }}<br><br>
 

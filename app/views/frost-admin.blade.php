@@ -21,7 +21,7 @@
 	{{ Form::label('email', 'Enter Your Email'); }}
 	{{ Form::text('email') }}<br><br />
 	{{ Form::label('Password', 'Enter Password'); }}
-	{{ Form::text('Password') }}<br><br />
+	{{ Form::password('password') }}<br><br />
 	{{ Form::label('gardener_Role', 'Enter Role'); }}
 	{{ Form::text('gardener_Role') }}<br><br />
 	{{ Form::submit('Submit') }}
