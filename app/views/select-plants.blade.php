@@ -5,6 +5,7 @@
 <h2>The Last Frost Date for Your Postal Code is
 <span class="bg-info">{{ $last_frost }}</span></h2>
 <br />
+
 <a href="/"><button type="button" class="btn btn-success  btn-lg">Start Again</button></a>
 <a href="/logout"><button type="button" class="btn btn-success  btn-lg">Logout</button></a>
 @stop

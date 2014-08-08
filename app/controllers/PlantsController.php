@@ -33,14 +33,13 @@ class PlantsController  extends BaseController {
     public function postFrost() {
     	
 		$postal = Input::get('postal_code');
+			$frosts = Frost::where('postal_Code', '=', $postal)->first();
 			
-		$frosts = Frost::where('postal_Code', '=', $postal)->first();
-		if ($frosts):
-			$last_frost = $frosts->last_Frost_Date;
-			return View::make('select-plants')->with('last_frost', $last_frost);
-		else:
-			return View::make('select-plants')->with('last_frost', 'Not Available in the System');
-		endif;
-		
+			if ($frosts):
+				$last_frost = $frosts->last_Frost_Date;
+				return View::make('select-plants')->with('last_frost', $last_frost);
+			else:
+					return View::make('frost')->with('flash_message', 'Please enter a postal code.');
+			endif;
 	}
 }

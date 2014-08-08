@@ -101,9 +101,9 @@ Route::filter('csrf', function()
 |
 */
 
-/*Route::filter('admin', function()
+Route::filter('admin', function()
 {
-   	$row = Auth::check();
+   	$row = Auth::user();
 	$role = $row->gardener_Role;
     if ($role == 'Admin') {
         return View::make('/frost-admin');
@@ -111,4 +111,4 @@ Route::filter('csrf', function()
 	else {
 		return View::make('/frost');
 	}
-});*/
+});

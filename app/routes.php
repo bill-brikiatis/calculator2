@@ -157,22 +157,19 @@ Route::post('/login',
 // Show home
 Route::get('/', function() {
 	
-	return View::make('/index');
+	return View::make('index');
 	
 });
 
 
-// Show Admin Interface Form
-/*Route::get('/frost-admin', function() {
-	
-	array(
-		'before' => 'auth',
-		function($format = 'html') {
+// Show Admin Interface Form & filter out non-admin
+Route::get('/frost-admin', array(
+	'before' => 'admin',
+	function() {
 	
 		return View::make('frost-admin');
-		});
-
-});*/
+		}
+));
 
 Route::get('frost-admin', 
 	
@@ -183,21 +180,6 @@ Route::get('frost-admin',
 		return View::make('frost-admin');
 
 }));
-
-
-
-
-
-
-
-// Show Admin Interface Form & filter out non-admin
-/*Route::get('/frost-admin', array(
-	'before' => 'admin',
-	function() {
-	
-		return View::make('frost-admin');
-		}
-));*/
 
 
 
@@ -213,7 +195,7 @@ Route::get('frost',
 
 
 // Show lost frost date & select plants
-Route::get('select-plants',
+Route::get('/select-plants',
 
 	array(
 		'before' => 'auth',
@@ -221,6 +203,14 @@ Route::get('select-plants',
 	
 	return View::make('select-plants');
 }));
+
+
+Route::get('/select-plants', function() {
+	
+	return View::make('/index');
+	
+});
+
 
 Route::post('/frost', 'PlantsController@postFrost');
 
