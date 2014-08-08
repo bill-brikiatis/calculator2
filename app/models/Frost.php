@@ -17,6 +17,8 @@ class Frost extends Eloquent {
 	//public $last_frost_date;
 	//public $postal_code;
 	
+	protected $fillable = array('postal_Code', 'last_Frost_Date');
+	
 	public function gardeners() {
 		return $this->hasMany('Gardener');
 	}
