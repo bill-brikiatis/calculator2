@@ -4,7 +4,7 @@
 The Live URL is <http://calculator2.gopagoda.com/>.
 
 ## Description
-This site is called Planting Date Calculator. It allows those who are logged in to enter a postal code and the postal code receive the location's average last frost date. Vegetable gardeners can use this date to decide when to plant.
+This site is called Planting Date Calculator. It allows those who are logged in to enter a postal code and the user receives the location's average last frost date. Vegetable gardeners can use this date to decide when to plant.
 
 ## Details for teaching team
 The site has been seeded with approximately 20 postal codes for teacher assistant testing and site review. The valid postal codes are in the FrostTableSeeder for reference. When a user enters a postal code that is invalid or not yet in the system, the site tells the user.
