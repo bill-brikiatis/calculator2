@@ -8,5 +8,6 @@
 		you can start by entering it. If not, you can create one.</p>
 		</div><!--.col-md-8-->
 <a href="/login"><button type="button" class="btn btn-success  btn-lg">Start Here</button></a>
+<div class="col-md-8"><p>If you are already logged in, logout <a href="/logout">here</a>.</p></div>
 
 @stop
