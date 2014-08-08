@@ -163,18 +163,19 @@ Route::get('/', function() {
 
 
 // Show Admin Interface Form & filter out non-admin
-Route::get('/frost-admin', array(
+/*Route::get('/frost-admin', array(
 	'before' => 'admin',
 	function() {
 	
 		return View::make('frost-admin');
 		}
-));
+));*/
 
 Route::get('frost-admin', 
 	
 	array(
 		'before' => 'auth',
+		'before' => 'admin',
 		function($format = 'html') {
 	
 		return View::make('frost-admin');
