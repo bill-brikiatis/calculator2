@@ -24,5 +24,6 @@ A future version will implement form validation and will add more functionality.
 * Paste/Pre for debugging
 * Susan's database debug script
 * phpMyAdmin was added to the site for debugging
+* A little CSS from Twitter Bootstrap
 
 
