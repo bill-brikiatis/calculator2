@@ -2,7 +2,7 @@
 
 @section('last_frost')
 
-<h2>Get Started, Enter Your Password Here</h2>
+<h2>To Get Started, You Must Enter Your Password Here</h2>
 
 {{ Form::open(array('url' => '/login')) }}
 	{{ Form::label('email', 'Enter Your Email'); }}

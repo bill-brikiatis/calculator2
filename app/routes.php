@@ -11,33 +11,6 @@
 |
 */
 
-/*Route::get('/frost', function() {
-	
-	
-	
-	 $frosts = Frost::where('postal_Code', '=', '03087')->first();
-	 $your_last_frost_date = "This is your last frost date $frosts->last_Frost_Date .";
-   		
-   	 return View::make('/frost')
-		->with('your_last_frost_date', $your_last_frost_date);
-	
-});*/
-
-
-
-
-
-Route::get('/practice-deleting', function() {
-
-    # First get a book to delete
-     $frosts = Frost::where('postal_Code', '=', '03087')->first();
-
-    # Goodbye!
-    $frosts->delete();
-
-    return "Deletion complete; check the database to see if it worked...";
-
-});
 
 // Susan's debug script
 
@@ -85,22 +58,6 @@ Route::get('/debug', function() {
     echo '</pre>';
 
 });
-
-// Susan's database test
-
-Route::get('/mysql-test', function() {
-
-    # Use the DB component to select all the databases
-    $results = DB::select('SHOW DATABASES;');
-
-    # If the "Pre" package is not installed, you should output using print_r instead
-    return Paste\Pre::render($results);
-
-});
-
-
-
-
 
 
 // AUTHENTICATION PROCESS
@@ -206,10 +163,31 @@ Route::get('/', function() {
 
 
 // Show Admin Interface Form
-Route::get('/frost-admin', function() {
+/*Route::get('/frost-admin', function() {
 	
-	return View::make('frost-admin');
-});
+	array(
+		'before' => 'auth',
+		function($format = 'html') {
+	
+		return View::make('frost-admin');
+		});
+
+});*/
+
+Route::get('frost-admin', 
+	
+	array(
+		'before' => 'auth',
+		function($format = 'html') {
+	
+		return View::make('frost-admin');
+
+}));
+
+
+
+
+
 
 
 // Show Admin Interface Form & filter out non-admin
@@ -223,28 +201,29 @@ Route::get('/frost-admin', function() {
 
 
 
-Route::get('/frost', function() {
+Route::get('frost', 
+
+	array(
+		'before' => 'auth',
+		function($format = 'html') {
 	
 	return View::make('frost');
-});
+	
+}));
 
 
 // Show lost frost date & select plants
-Route::get('/select-plants', function() {
+Route::get('select-plants',
+
+	array(
+		'before' => 'auth',
+		function($format = 'html') {
 	
 	return View::make('select-plants');
-});
+}));
 
 Route::post('/frost', 'PlantsController@postFrost');
 
 
 // Process enter postal codes
 Route::post('/admin-frost', 'PlantsController@postEnterFrost');
-
-
-Route::get('/trigger-error',function() {
-
-    # Class Foobar should not exist, so this should create an error
-    $foo = new Foobar;
-
-});

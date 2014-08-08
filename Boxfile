@@ -10,8 +10,6 @@ web1:
     - "rm -f app/storage/cache/*"
     - "rm -f app/storage/views/*"
     - "php artisan migrate"
-    - "php artisan db:seed --class=FrostTableSeeder"
-    - "php artisan db:seed --class=GardenerTableSeeder"
   document_root: public
   name: "application name"
   php_extensions: 
